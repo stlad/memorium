@@ -1,0 +1,304 @@
+body {
+  background: 
+    linear-gradient(rgba(0, 0, 0, 0.92), rgba(10, 10, 15, 0.97)),
+    repeating-linear-gradient(
+      0deg,
+      #0a0a0f 0px,
+      #0a0a0f 1px,
+      transparent 1px,
+      transparent 2px
+    ),
+    radial-gradient(circle at 10% 20%, rgba(30, 15, 5, 0.08) 0%, transparent 25%),
+    radial-gradient(circle at 90% 80%, rgba(40, 20, 10, 0.06) 0%, transparent 30%);
+  color: #f0903a;
+  font-family: 'Alumni Sans Pinstripe', 'Courier New', monospace;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  text-shadow: 0 0 3px rgba(240, 144, 58, 0.5);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(
+      rgba(18, 16, 20, 0) 50%, 
+      rgba(15, 10, 5, 0.08) 50%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(30, 20, 15, 0.08) 1px,
+      transparent 1px
+    );
+  background-size: 100% 4px, 3px 100%;
+  z-index: -3;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.terminal-container {
+  border: 2px solid #f0903a;
+  border-radius: 4px;
+  padding: 30px;
+  background: rgba(12, 10, 8, 0.92);
+  box-shadow: 
+    0 0 15px rgba(240, 144, 58, 0.35),
+    inset 0 0 12px rgba(30, 20, 15, 0.8);
+  position: relative;
+  overflow: hidden;
+  max-width: 90%;
+  text-align: center;
+  animation: border-pulse 12s infinite linear;
+  z-index: 10;
+}
+
+.terminal-container::before {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #0b0806;
+  color: #ffc49a;
+  padding: 0 10px;
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  text-shadow: none;
+  border: 1px solid #5a3a1a;
+  font-weight: bold;
+  z-index: 5;
+}
+
+.terminal-container::after {
+  content: "";
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #f0903a, transparent);
+  border-radius: 1px;
+  z-index: 5;
+}
+
+h1 {
+  font-size: 3.2rem;
+  letter-spacing: 3px;
+  margin: 20px 0;
+  text-transform: uppercase;
+  position: relative;
+  font-weight: 700;
+  text-shadow: 
+    0 0 10px rgba(240, 144, 58, 0.6),
+    0 0 20px rgba(240, 144, 58, 0.3);
+  z-index: 5;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  margin-top: 15px;
+  color: #e0c09a;
+  letter-spacing: 2px;
+  opacity: 0.85;
+  font-weight: 300;
+  text-shadow: 0 0 4px rgba(240, 144, 58, 0.3);
+  z-index: 5;
+  position: relative;
+}
+
+.scanline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(15, 10, 5, 0.25) 48%,
+    rgba(255, 200, 150, 0.08) 50%,
+    rgba(15, 10, 5, 0.25) 52%,
+    transparent 100%
+  );
+  animation: crt-scan 8s linear infinite;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.data-stream {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    180deg,
+    transparent,
+    transparent 2px,
+    rgba(240, 144, 58, 0.03) 2px,
+    rgba(240, 144, 58, 0.03) 3px
+  );
+  animation: data-fall 15s linear infinite;
+  opacity: 0.6;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.status-bar {
+  position: absolute;
+  bottom: 10px;
+  right: 15px;
+  font-size: 0.7rem;
+  color: #ffc49a;
+  background: rgba(25, 18, 12, 0.82);
+  padding: 2px 8px;
+  border: 1px solid #5a3a1a;
+  border-radius: 2px;
+  letter-spacing: 1px;
+  font-weight: bold;
+  box-shadow: 0 0 5px rgba(240, 144, 58, 0.3);
+  z-index: 5;
+}
+
+.signal-light {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  width: 12px;
+  height: 12px;
+  background: #2a1508;
+  border: 1px solid #7a4a2a;
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(240, 144, 58, 0.4);
+  animation: signal-throb 4s infinite ease-in-out;
+  z-index: 5;
+}
+
+.static-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(240,144,58,0.08) 1px, transparent 1px),
+    radial-gradient(circle at 30% 40%, rgba(240,144,58,0.04) 1px, transparent 1px),
+    radial-gradient(circle at 50% 60%, rgba(240,144,58,0.06) 1px, transparent 1px),
+    radial-gradient(circle at 70% 80%, rgba(240,144,58,0.04) 1px, transparent 1px),
+    radial-gradient(circle at 90% 10%, rgba(240,144,58,0.08) 1px, transparent 1px);
+  background-size: 150px 150px;
+  opacity: 0.03;
+  animation: static-flicker 12s infinite steps(1);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.data-trail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    0deg,
+    transparent 0%,
+    rgba(20, 12, 8, 0.15) 45%,
+    rgba(30, 18, 10, 0.25) 55%,
+    transparent 100%
+  );
+  animation: data-trail-move 25s linear infinite;
+  opacity: 0.7;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes border-pulse {
+  0%, 100% { 
+    box-shadow: 
+      0 0 12px rgba(240, 144, 58, 0.3),
+      inset 0 0 10px rgba(30, 20, 15, 0.75);
+    border-color: #d07a2a;
+  }
+  50% { 
+    box-shadow: 
+      0 0 20px rgba(240, 144, 58, 0.5),
+      inset 0 0 15px rgba(40, 25, 15, 0.85);
+    border-color: #f0903a;
+  }
+}
+
+@keyframes crt-scan {
+  0% { 
+    background-position: 0 0;
+    opacity: 0.8;
+  }
+  100% { 
+    background-position: 0 100vh;
+    opacity: 0.9;
+  }
+}
+
+@keyframes data-fall {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 100%; }
+}
+
+@keyframes signal-throb {
+  0%, 100% { 
+    box-shadow: 0 0 4px rgba(240, 144, 58, 0.3), inset 0 0 2px rgba(200, 100, 40, 0.4); 
+    background: #3a1a0a; 
+  }
+  50% { 
+    box-shadow: 0 0 12px rgba(240, 144, 58, 0.7), inset 0 0 6px rgba(240, 144, 58, 0.5); 
+    background: #f0903a; 
+  }
+}
+
+@keyframes static-flicker {
+  0%, 100% { opacity: 0.02; }
+  15% { opacity: 0.04; }
+  30% { opacity: 0.02; }
+  45% { opacity: 0.05; }
+  60% { opacity: 0.03; }
+  75% { opacity: 0.06; }
+  90% { opacity: 0.02; }
+}
+
+@keyframes data-trail-move {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 100vh; }
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 2rem;
+    letter-spacing: 1px;
+  }
+  
+  .terminal-container {
+    padding: 20px;
+    margin: 15px;
+    border-width: 1.5px;
+  }
+  
+  .subtitle {
+    font-size: 0.85rem;
+  }
+  
+  .terminal-container::before {
+    font-size: 0.6rem;
+  }
+  
+  .signal-light {
+    width: 10px;
+    height: 10px;
+  }
+}
