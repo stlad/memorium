@@ -1,5 +1,5 @@
 echo off
-set server=bibburat@psyche-rbpi-0
+set server=bibburat@wiredlain-0
 set remote_path=~/Downloads/
 set ssh_port=2233
 set /p file="Enter Filename to send: "
