@@ -1,5 +1,5 @@
 @echo off
-set server=bibburat@wiredlain-0
+set server=bibburat@nebula-0
 set remote_path=~/Downloads/
 set ssh_port=2233
 set "file=%~1"

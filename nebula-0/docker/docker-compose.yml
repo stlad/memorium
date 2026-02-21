@@ -1,10 +1,10 @@
 version: '3.8'
-name: wiredlain
+name: nebula
 
 services:
-  wiredlain-database:
+  nebula-postgres:
     image: 'postgres:16'
-    container_name: wiredlain-database
+    container_name: nebula-postgres
     environment:
       - POSTGRES_USER=${DB_USER}
       - PGUSER=${DB_USER}
@@ -20,12 +20,12 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data/:rw
     networks:
-      - wiredlainNet
+      - nebulaNet
 
 
 networks:
-  wiredlainNet:
-    name: wiredlainNet
+  nebulaNet:
+    name: nebulaNet
     driver: bridge
 
     
