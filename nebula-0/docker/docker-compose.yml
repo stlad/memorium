@@ -22,7 +22,7 @@ services:
     networks:
       - nebulaNet
 
-filebrowser:
+  filebrowser:
     image: filebrowser/filebrowser:latest
     container_name: filebrowser
     restart: unless-stopped
@@ -35,7 +35,8 @@ filebrowser:
     environment:
       - PUID=1000  # ID пользователя (можно узнать командой 'id')
       - PGID=1000  # ID группы
-      - TZ=Asia/Yekaterinburg 
+      - TZ=Europe/Moscow  
+
 
 networks:
   nebulaNet:
